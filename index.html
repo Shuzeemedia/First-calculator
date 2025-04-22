@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            font-family: sans-serif;
+            outline: none;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+        }
+
+        #wrap_calc {
+            width: 25%;
+            /* width: 50%; */
+            height: fit-content;
+            background-color: #000;
+            border-radius: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 30px;
+            gap: 30px;
+        }
+
+        #row {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #wrap_btns {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            /* background-color: aqua; */
+        }
+
+        button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+
+            font-size: 24px;
+            color: #fff;
+        }
+
+        #wrap_inp {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            height: 50px;
+            /* background-color: blue; */
+            justify-content: space-between;
+        }
+
+        input {
+            width: 45%;
+            font-size: 24px;
+            color: #fff;
+            padding: 0 0 0 10px;
+            background-color: transparent;
+            box-shadow: 0 0 15px #333;
+            border-radius: 10px;
+        }
+
+        #dis {
+            height: 100px;
+            width: 100%;
+            /* background-color: yellow; */
+            display: flex;
+            align-items: center;
+            padding: 0 0 0 10px;
+            font-size: 24px;
+            box-shadow: 0 0 15px #333;
+            color: #fff;
+        }
+
+        #btn_op {
+            background-color: orangered;
+        }
+
+        #btn_ops {
+            background-color: #444;
+            color: #000;
+        }
+
+        #btn_num {
+            background-color: transparent;
+            border: 1px solid #333;
+        }
+
+        @media screen and (max-width: 850px) {
+            #wrap_calc {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            #wrap_calc {
+                width: 70%;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            #wrap_calc {
+                width: 80%;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            #wrap_calc {
+                width: 90%;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            #wrap_calc {
+                width: 95%;
+                border-radius: 10px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            #wrap_calc {
+                width: 95%;
+                border-radius: 10px;
+            }
+
+            button {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+
+                font-size: 24px;
+                color: #fff;
+            }
+
+            input{
+                box-shadow: 0 0 8px #333;
+            }
+
+            #dis{
+                box-shadow: 0 0 8px #333;
+            }
+        }
+
+        @media screen and (max-width: 380px) {
+            #wrap_calc {
+                width: 95%;
+                padding-top: 40px;
+            }
+
+            button {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+
+                font-size: 24px;
+                color: #fff;
+            }
+
+            #wrap_inp {
+                flex-direction: column;
+                height: fit-content;
+                gap: 30px;
+            }
+
+            input {
+                width: 100%;
+                height: 50px;
+            }
+        }
+
+        @media screen and (max-width: 365px) {
+            #wrap_calc {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+        /* @media screen and (max-width: 320px) {
+
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="wrap_calc">
+        <div id="wrap_inp">
+            <input type="text" id="inp1" autocomplete="off">
+
+            <input type="text" id="inp2" autocomplete="off">
+        </div>
+
+        <div id="dis"></div>
+
+        <div id="wrap_btns">
+            <div id="row">
+                <button id="btn_ops" onclick="clears()">C</button>
+
+                <button id="btn_ops" onclick="mod()">mod</button>
+
+                <button id="btn_ops" onclick="percent()">%</button>
+
+                <button id="btn_op" onclick="div()">/</button>
+            </div>
+
+            <div id="row">
+                <button id="btn_num" onclick="num1()">1</button>
+
+                <button id="btn_num" onclick="num2()">2</button>
+
+                <button id="btn_num" onclick="num3()">3</button>
+
+                <button id="btn_op" onclick="mul()">X</button>
+            </div>
+
+            <div id="row">
+                <button id="btn_num" onclick="num4()">4</button>
+
+                <button id="btn_num" onclick="num5()">5</button>
+
+                <button id="btn_num" onclick="num6()">6</button>
+
+                <button id="btn_op" onclick="sub()">-</button>
+            </div>
+
+            <div id="row">
+                <button id="btn_num" onclick="num7()">7</button>
+
+                <button id="btn_num" onclick="num8()">8</button>
+
+                <button id="btn_num" onclick="num9()">9</button>
+
+                <button id="btn_op" onclick="sum()">+</button>
+            </div>
+
+            <div id="row">
+                <button id="btn_num" onclick="num0()">0</button>
+
+                <button id="btn_num" onclick="dec()">.</button>
+
+                <button id="btn_op" onclick="expo()">X^2</button>
+
+                <button id="btn_op" onclick="eql()">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let input1 = document.getElementById("inp1")
+    let input2 = document.getElementById("inp2")
+
+    let display = document.getElementById("dis")
+
+    function num1() {
+
+        input1.value = "1"
+
+
+
+        input2.value = "1"
+
+    }
+
+    function clears() {
+        input1.value = ""
+        input2.value = ""
+        display.innerHTML = ""
+    }
+
+    function mod() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 % val2
+
+        
+    }
+
+    function percent() {
+        let val1 = +(input1.value)
+        display.innerHTML = val1 / 100
+
+        let val2 = +(input2.value)
+        display.innerHTML = val2 / 100
+    }
+
+    function div() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 / val2
+    }
+
+
+    function mul() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 * val2
+    }
+
+
+    function sub() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 - val2
+    }
+
+
+    function sum() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 + val2
+    }
+
+
+    function expo() {
+        let val1 = +(input1.value)
+        let val2 = +(input2.value)
+        display.innerHTML = val1 ** val2
+    }
+
+
+</script>
