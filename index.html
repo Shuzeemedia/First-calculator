@@ -28,13 +28,14 @@
             /* width: 50%; */
             height: fit-content;
             background-color: #000;
-            border-radius: 80px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 80px 20px 30px;
             gap: 30px;
+            box-shadow: 0 4px 30px rgb(255, 69, 0);
         }
 
         #row {
@@ -54,8 +55,8 @@
         }
 
         button {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
 
             font-size: 24px;
@@ -77,24 +78,24 @@
             color: #fff;
             padding: 0 0 0 10px;
             background-color: transparent;
-            box-shadow: 0 0 15px #333;
+            box-shadow: 0 0 5px #333;
             border-radius: 10px;
         }
 
         #dis {
             height: 100px;
             width: 100%;
-            /* background-color: yellow; */
+            border-radius: 10px;
             display: flex;
             align-items: center;
             padding: 0 0 0 10px;
             font-size: 24px;
-            box-shadow: 0 0 15px #333;
+            box-shadow: 0 0 5px #333;
             color: #fff;
         }
 
         #btn_op {
-            background-color: orangered;
+            background-color: rgb(255, 69, 0);
         }
 
         #btn_ops {
@@ -105,6 +106,16 @@
         #btn_num {
             background-color: transparent;
             border: 1px solid #333;
+        }
+
+        input::placeholder {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 1115px) {
+            #wrap_calc {
+                width: 60%;
+            }
         }
 
         @media screen and (max-width: 850px) {
@@ -145,19 +156,19 @@
             }
 
             button {
-                width: 60px;
-                height: 60px;
+                /* width: 60px;
+                height: 60px; */
                 border-radius: 50%;
 
                 font-size: 24px;
                 color: #fff;
             }
 
-            input{
+            input {
                 box-shadow: 0 0 8px #333;
             }
 
-            #dis{
+            #dis {
                 box-shadow: 0 0 8px #333;
             }
         }
@@ -196,6 +207,7 @@
                 border-radius: 0;
             }
         }
+
         /* @media screen and (max-width: 320px) {
 
         } */
@@ -205,9 +217,9 @@
 <body>
     <div id="wrap_calc">
         <div id="wrap_inp">
-            <input type="text" id="inp1" autocomplete="off">
+            <input type="text" id="inp1" autocomplete="off" placeholder="Enter Length">
 
-            <input type="text" id="inp2" autocomplete="off">
+            <input type="text" id="inp2" autocomplete="off" placeholder="Enter Breadth">
         </div>
 
         <div id="dis"></div>
@@ -215,52 +227,7 @@
         <div id="wrap_btns">
             <div id="row">
                 <button id="btn_ops" onclick="clears()">C</button>
-
-                <button id="btn_ops" onclick="mod()">mod</button>
-
-                <button id="btn_ops" onclick="percent()">%</button>
-
-                <button id="btn_op" onclick="div()">/</button>
-            </div>
-
-            <div id="row">
-                <button id="btn_num" onclick="num1()">1</button>
-
-                <button id="btn_num" onclick="num2()">2</button>
-
-                <button id="btn_num" onclick="num3()">3</button>
-
                 <button id="btn_op" onclick="mul()">X</button>
-            </div>
-
-            <div id="row">
-                <button id="btn_num" onclick="num4()">4</button>
-
-                <button id="btn_num" onclick="num5()">5</button>
-
-                <button id="btn_num" onclick="num6()">6</button>
-
-                <button id="btn_op" onclick="sub()">-</button>
-            </div>
-
-            <div id="row">
-                <button id="btn_num" onclick="num7()">7</button>
-
-                <button id="btn_num" onclick="num8()">8</button>
-
-                <button id="btn_num" onclick="num9()">9</button>
-
-                <button id="btn_op" onclick="sum()">+</button>
-            </div>
-
-            <div id="row">
-                <button id="btn_num" onclick="num0()">0</button>
-
-                <button id="btn_num" onclick="dec()">.</button>
-
-                <button id="btn_op" onclick="expo()">X^2</button>
-
-                <button id="btn_op" onclick="eql()">=</button>
             </div>
         </div>
     </div>
@@ -271,18 +238,8 @@
 <script>
     let input1 = document.getElementById("inp1")
     let input2 = document.getElementById("inp2")
-
+    let value = true
     let display = document.getElementById("dis")
-
-    function num1() {
-
-        input1.value = "1"
-
-
-
-        input2.value = "1"
-
-    }
 
     function clears() {
         input1.value = ""
@@ -290,55 +247,35 @@
         display.innerHTML = ""
     }
 
-    function mod() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 % val2
-
-        
-    }
-
-    function percent() {
-        let val1 = +(input1.value)
-        display.innerHTML = val1 / 100
-
-        let val2 = +(input2.value)
-        display.innerHTML = val2 / 100
-    }
-
-    function div() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 / val2
-    }
-
-
     function mul() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 * val2
+        let val1 = +(input1.value).trim()
+        let val2 = +(input2.value).trim()
+        if (!val1 || !val2) {
+            alert("Enter a valid Length and breadth")
+            // display.innerHTML = val1 * val2
+        }
+
+        else {
+            display.innerHTML = val1 * val2
+        }
+
+        // if (!val1 || val2) {
+        //     value = false
+        // }
+
+        // else if (val1 || !val2) {
+        //     value
+        // }
+
+        // if (value) {
+        //     alert("Enter a valid Breadth")
+        // }
+
+        // else if (value = false) {
+        //     alert("Enter a valid Length")
+        // }
+
+
+
     }
-
-
-    function sub() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 - val2
-    }
-
-
-    function sum() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 + val2
-    }
-
-
-    function expo() {
-        let val1 = +(input1.value)
-        let val2 = +(input2.value)
-        display.innerHTML = val1 ** val2
-    }
-
-
 </script>
